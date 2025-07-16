@@ -1,0 +1,32 @@
+/* stylelint-disable-next-line at-rule-no-unknown */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Forcer Leaflet sous le header */
+.leaflet-container,
+.leaflet-pane,
+.leaflet-top,
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-marker-icon,
+.leaflet-popup {
+  z-index: 10 !important;
+}
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: #f9f7f4 !important;   /* remplace #f9f7f4 par ta vraie couleur cream si besoin */
+  border-radius: 1rem !important;    /* coins arrondis */
+  box-shadow: 0 4px 24px rgba(163,43,43,0.12) !important; /* shadow light rouge, optionnel */
+}
+.leaflet-popup-content {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: normal;
+}
+.leaflet-popup-close-button {
+  top: 8px !important;
+  right: 10px !important;
+  color: #a32b2b !important;         /* croix rouge si tu veux */
+  font-size: 1.3rem !important;
+}
