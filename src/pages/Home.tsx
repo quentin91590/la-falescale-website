@@ -43,11 +43,10 @@ interface Testimonial {
 const Home = () => {
   const { t } = useTranslation();
 
-
-const [currentSlide, setCurrentSlide] = useState(0);
-const touchStartX = useRef(0);
-const touchEndX = useRef(0);
-const swipeThreshold = 50; // en pixels
+  const [currentSlide, setCurrentSlide] = useState(0); // <- déplacé ici
+  const touchStartX = useRef(0); // <- déplacé ici
+  const touchEndX = useRef(0); // <- déplacé ici
+  const swipeThreshold = 50;
 
   const heroImages = [
     photoMaison,
