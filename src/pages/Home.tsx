@@ -1,5 +1,4 @@
-import React, { useState, useRef } from 'react';
-
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import photoMaison from '../assets/Photo_maison.jpg';
 import sejourImg from '../assets/sejour.jpg';
@@ -43,6 +42,8 @@ interface Testimonial {
 
 const Home = () => {
   const { t } = useTranslation();
+
+
 const [currentSlide, setCurrentSlide] = useState(0);
 const touchStartX = useRef(0);
 const touchEndX = useRef(0);
