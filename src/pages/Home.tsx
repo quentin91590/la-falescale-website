@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import photoMaison from '../assets/Photo_maison.jpg';
 import sejourImg from '../assets/sejour.jpg';
@@ -16,6 +16,11 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+
+const [currentSlide, setCurrentSlide] = useState(0);
+const touchStartX = useRef(0);
+const touchEndX = useRef(0);
+const swipeThreshold = 50; // en pixels
 
 const iconMap = {
   Waves,
@@ -45,11 +50,11 @@ const Home = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-const heroImages = [
-  photoMaison,
-  sejourImg,
-  chambreImg,
-];
+  const heroImages = [
+    photoMaison,
+    sejourImg,
+    chambreImg,
+  ];
 
   // *** Ces lignes doivent être DANS le composant, pas dehors ! ***
   const features = t('home.features', { returnObjects: true }) as Feature[];
@@ -66,24 +71,43 @@ const heroImages = [
     );
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.changedTouches[0].clientX;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    touchEndX.current = e.changedTouches[0].clientX;
+    const deltaX = touchStartX.current - touchEndX.current;
+
+    if (deltaX > swipeThreshold) {
+      nextSlide(); // swipe gauche
+    } else if (deltaX < -swipeThreshold) {
+      prevSlide(); // swipe droite
+    }
+  };
+
+
   return (
     <div className="pt-20">
 
       {/* Hero Section */}
-      <section className="relative h-screen overflow-hidden">
+      <section
+        className="relative h-screen overflow-hidden"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <div className="absolute inset-0">
           {heroImages.map((image, index) => (
             <div
               key={index}
-              className={`absolute inset-0 transition-opacity duration-1000 ${
-                index === currentSlide ? 'opacity-100' : 'opacity-0'
-              }`}
+              className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'
+                }`}
             >
-<img
-  src={image}
-  alt={`Vue de La Falescale ${index + 1}`}
-  className="w-full h-full object-cover"
-/>
+              <img
+                src={image}
+                alt={`Vue de La Falescale ${index + 1}`}
+                className="w-full h-full object-cover"
+              />
               <div className="absolute inset-0 bg-black/30"></div>
             </div>
           ))}
@@ -109,9 +133,8 @@ const heroImages = [
             <button
               key={index}
               onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors cursor-pointer ${
-                index === currentSlide ? 'bg-cream' : 'bg-cream/50'
-              }`}
+              className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-colors cursor-pointer ${index === currentSlide ? 'bg-cream' : 'bg-cream/50'
+                }`}
             />
           ))}
         </div>
@@ -133,16 +156,16 @@ const heroImages = [
 
           {/* Bouton centré verticalement */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-<Link
-  to="/reservation"
-  className="inline-flex items-center justify-center text-center
+            <Link
+              to="/reservation"
+              className="inline-flex items-center justify-center text-center
              bg-savoyard hover:bg-light-savoyard text-cream
              px-6 sm:px-8 py-3 sm:py-4 rounded-full
              font-semibold text-base sm:text-lg
              transition-all duration-300 hover:shadow-xl hover:scale-105"
->
-  {t('home.hero.button')}
-</Link>
+            >
+              {t('home.hero.button')}
+            </Link>
 
           </div>
         </div>
@@ -152,7 +175,7 @@ const heroImages = [
       <section className="py-16 bg-cream">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-          {features.map((feature: Feature, index: number) => {
+            {features.map((feature: Feature, index: number) => {
               const Icon = iconMap[feature.icon] || Waves;
               return (
                 <div
@@ -184,20 +207,20 @@ const heroImages = [
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            { [chambreImg, sejourImg, photoMaison].map((image, index) => (
-                <div
-                  key={index}
-                  className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up"
-                  style={{ animationDelay: `${index * 0.2}s` }}
-                >
-                  <img
-                    src={image}
-                    alt={`Intérieur du gîte ${index + 1}`}
-                    className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-              )
+            {[chambreImg, sejourImg, photoMaison].map((image, index) => (
+              <div
+                key={index}
+                className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up"
+                style={{ animationDelay: `${index * 0.2}s` }}
+              >
+                <img
+                  src={image}
+                  alt={`Intérieur du gîte ${index + 1}`}
+                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              </div>
+            )
             )}
           </div>
 
@@ -225,7 +248,7 @@ const heroImages = [
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {activities.map((activity: Activity, index: number) => (
+            {activities.map((activity: Activity, index: number) => (
               <div
                 key={index}
                 className="bg-cream p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow text-center animate-slide-up"
@@ -260,7 +283,7 @@ const heroImages = [
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {testimonials.map((testimonial: Testimonial, index: number) => (
+            {testimonials.map((testimonial: Testimonial, index: number) => (
               <div
                 key={index}
                 className="bg-cream p-6 rounded-xl shadow-md hover:shadow-lg transition-shadow animate-slide-up"
