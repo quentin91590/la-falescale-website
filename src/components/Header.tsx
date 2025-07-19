@@ -41,16 +41,15 @@ const Header = () => {
   const flagIcons =
     nextLang === 'en' ? (
       <div className="flex items-center justify-center space-x-1 h-5">
-        <img src={UK_FLAG} alt="UK" className="w-5 h-5 rounded-sm" />
+        <img src={UK_FLAG} alt="UK" className="w-5 h-5 min-w-[20px] flex-shrink-0 rounded-sm" />
         <span className="text-warm-brown font-bold text-base leading-5">/</span>
-        <img src={US_FLAG} alt="US" className="w-5 h-5 rounded-sm" />
+        <img src={US_FLAG} alt="US" className="w-5 h-5 min-w-[20px] flex-shrink-0 rounded-sm" />
       </div>
     ) : (
       <div className="flex items-center justify-center h-5">
-<img src={FR_FLAG} alt="FR" className="w-5 h-5 flex-shrink-0 rounded-sm" />
+        <img src={FR_FLAG} alt="FR" className="w-5 h-5 min-w-[20px] flex-shrink-0 rounded-sm" />
       </div>
     );
-
   const toggleLanguage = () => {
     i18n.changeLanguage(nextLang);
   };
@@ -103,8 +102,8 @@ const Header = () => {
               className={`
     flex items-center justify-center ml-2 md:ml-4 px-3 py-2 
     bg-white rounded-lg shadow hover:bg-savoyard/10 
-    border border-savoyard/30 transition 
-    ${buttonMinWidth}
+    border border-savoyard/30 transition
+    flex-shrink-0 ${buttonMinWidth}
   `}
               aria-label={ariaLabel}
             >
