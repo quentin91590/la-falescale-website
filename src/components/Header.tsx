@@ -30,22 +30,26 @@ const Header = () => {
   ];
 
   const nextLang = i18n.language === 'fr' ? 'en' : 'fr';
-  const langLabel = nextLang === 'en' ? 'EN' : 'FR';
   const ariaLabel = nextLang === 'en'
     ? "Switch to English"
     : "Passer en français";
+  const buttonMinWidth =
+    nextLang === 'en' ? 'min-w-[84px]' : 'min-w-[40px]'; // ← à ajuster selon visuel
+
 
   // Drapeaux EN côte à côte, même taille que FR, séparés par un /
-  const flagIcons =
-    nextLang === 'en' ? (
-      <span className="flex items-center mr-2 space-x-1">
-        <img src={UK_FLAG} alt="UK" className="w-5 h-5 rounded-sm" />
-        <span className="text-warm-brown font-bold text-base">/</span>
-        <img src={US_FLAG} alt="US" className="w-5 h-5 rounded-sm" />
-      </span>
-    ) : (
-      <img src={FR_FLAG} alt="FR" className="w-5 h-5 rounded-sm mr-2" />
-    );
+const flagIcons =
+  nextLang === 'en' ? (
+    <div className="flex items-center justify-center space-x-1 h-5">
+      <img src={UK_FLAG} alt="UK" className="w-5 h-5 rounded-sm" />
+      <span className="text-warm-brown font-bold text-base leading-5">/</span>
+      <img src={US_FLAG} alt="US" className="w-5 h-5 rounded-sm" />
+    </div>
+  ) : (
+    <div className="flex items-center justify-center h-5">
+      <img src={FR_FLAG} alt="FR" className="w-5 h-5 rounded-sm" />
+    </div>
+  );
 
   const toggleLanguage = () => {
     i18n.changeLanguage(nextLang);
@@ -94,14 +98,18 @@ const Header = () => {
             </div>
 
             {/* Langue switch tout à droite */}
-            <button
-              onClick={toggleLanguage}
-              className="flex items-center ml-2 md:ml-4 px-2 sm:px-3 py-2 bg-white rounded-lg shadow hover:bg-savoyard/10 border border-savoyard/30 transition whitespace-nowrap min-w-[70px]"
-              aria-label={ariaLabel}
-            >
-              {flagIcons}
-            </button>
-
+<button
+  onClick={toggleLanguage}
+  className={`
+    flex items-center justify-center ml-2 md:ml-4 px-3 py-2 
+    bg-white rounded-lg shadow hover:bg-savoyard/10 
+    border border-savoyard/30 transition 
+    ${buttonMinWidth}
+  `}
+  aria-label={ariaLabel}
+>
+  {flagIcons}
+</button>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -140,7 +148,6 @@ const Header = () => {
                 aria-label={ariaLabel}
               >
                 {flagIcons}
-                <span>{langLabel}</span>
               </button>
             </div>
           </div>

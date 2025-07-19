@@ -133,12 +133,17 @@ const heroImages = [
 
           {/* Bouton centré verticalement */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Link
-              to="/reservation"
-              className="inline-block bg-savoyard hover:bg-light-savoyard text-cream px-6 sm:px-8 py-3 sm:py-4 rounded-full font-semibold text-base sm:text-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
-            >
-              {t('home.hero.button')}
-            </Link>
+<Link
+  to="/reservation"
+  className="inline-flex items-center justify-center text-center
+             bg-savoyard hover:bg-light-savoyard text-cream
+             px-6 sm:px-8 py-3 sm:py-4 rounded-full
+             font-semibold text-base sm:text-lg
+             transition-all duration-300 hover:shadow-xl hover:scale-105"
+>
+  {t('home.hero.button')}
+</Link>
+
           </div>
         </div>
       </section>
