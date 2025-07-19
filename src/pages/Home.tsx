@@ -43,9 +43,9 @@ interface Testimonial {
 const Home = () => {
   const { t } = useTranslation();
 
-  const [currentSlide, setCurrentSlide] = useState(0); // <- déplacé ici
-  const touchStartX = useRef(0); // <- déplacé ici
-  const touchEndX = useRef(0); // <- déplacé ici
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const touchStartX = useRef(0);
+  const touchEndX = useRef(0);
   const swipeThreshold = 50;
 
   const heroImages = [
@@ -54,7 +54,6 @@ const Home = () => {
     chambreImg,
   ];
 
-  // *** Ces lignes doivent être DANS le composant, pas dehors ! ***
   const features = t('home.features', { returnObjects: true }) as Feature[];
   const activities = t('home.activities.items', { returnObjects: true }) as Activity[];
   const testimonials = t('home.testimonials.items', { returnObjects: true }) as Testimonial[];
@@ -78,19 +77,18 @@ const Home = () => {
     const deltaX = touchStartX.current - touchEndX.current;
 
     if (deltaX > swipeThreshold) {
-      nextSlide(); // swipe gauche
+      nextSlide();
     } else if (deltaX < -swipeThreshold) {
-      prevSlide(); // swipe droite
+      prevSlide();
     }
   };
-
 
   return (
     <div className="pt-20">
 
-      {/* Hero Section */}
+      {/* Hero Section - IMAGE/CAROUSEL */}
       <section
-        className="relative h-screen overflow-hidden"
+        className="relative w-full aspect-[16/9] sm:h-screen overflow-hidden"
         onTouchStart={handleTouchStart}
         onTouchEnd={handleTouchEnd}
       >
@@ -104,7 +102,7 @@ const Home = () => {
               <img
                 src={image}
                 alt={`Vue de La Falescale ${index + 1}`}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
               />
               <div className="absolute inset-0 bg-black/30"></div>
             </div>
@@ -137,37 +135,52 @@ const Home = () => {
           ))}
         </div>
 
-        {/* Hero Content */}
-        <div className="absolute inset-0 flex flex-col justify-between px-4 sm:px-6 lg:px-8 pt-[5vh] pb-[10vh]">
-          {/* Texte haut */}
-          <div className="text-center text-cream max-w-4xl w-full mx-auto animate-fade-in drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
-            <h1 className="font-playfair text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-              {t('home.hero.title')}
-            </h1>
-            <p className="text-lg sm:text-xl md:text-2xl mb-4 sm:mb-6 font-light px-2">
-              {t('home.hero.subtitle')}
-            </p>
-            <p className="text-base sm:text-lg opacity-90 px-2 max-w-2xl mx-auto">
-              {t('home.hero.desc')}
-            </p>
-          </div>
-
-          {/* Bouton centré verticalement */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <Link
-              to="/reservation"
-              className="inline-flex items-center justify-center text-center
+        {/* Texte + bouton superposés – uniquement sur desktop/tablette */}
+        <div className="hidden sm:flex absolute inset-0 flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10">
+          <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-cream">
+            {t('home.hero.title')}
+          </h1>
+          <p className="text-xl md:text-2xl mb-4 md:mb-6 font-light px-2 text-cream">
+            {t('home.hero.subtitle')}
+          </p>
+          <p className="text-lg opacity-90 px-2 max-w-2xl mx-auto text-cream">
+            {t('home.hero.desc')}
+          </p>
+          <Link
+            to="/reservation"
+            className="mt-4 inline-flex items-center justify-center text-center
              bg-savoyard hover:bg-light-savoyard text-cream
-             px-6 sm:px-8 py-3 sm:py-4 rounded-full
-             font-semibold text-base sm:text-lg
+             px-8 py-4 rounded-full
+             font-semibold text-lg
              transition-all duration-300 hover:shadow-xl hover:scale-105"
-            >
-              {t('home.hero.button')}
-            </Link>
-
-          </div>
+          >
+            {t('home.hero.button')}
+          </Link>
         </div>
       </section>
+
+      {/* Texte + bouton SOUS l’image – uniquement sur mobile */}
+      <div className="flex flex-col items-center justify-center text-center bg-cream/95 text-warm-brown px-4 py-6 sm:hidden">
+        <h1 className="font-playfair text-2xl font-bold mb-3 leading-tight">
+          {t('home.hero.title')}
+        </h1>
+        <p className="text-base mb-2 font-light px-2">
+          {t('home.hero.subtitle')}
+        </p>
+        <p className="text-sm opacity-90 px-2 max-w-2xl mx-auto mb-3">
+          {t('home.hero.desc')}
+        </p>
+        <Link
+          to="/reservation"
+          className="mt-2 inline-flex items-center justify-center text-center
+           bg-savoyard hover:bg-light-savoyard text-cream
+           px-6 py-3 rounded-full
+           font-semibold text-base
+           transition-all duration-300 hover:shadow-xl hover:scale-105"
+        >
+          {t('home.hero.button')}
+        </Link>
+      </div>
 
       {/* Features Section */}
       <section className="py-16 bg-cream">
