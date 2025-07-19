@@ -52,25 +52,25 @@ const Header = () => {
   };
 
   return (
-<header
-  className={`
+    <header
+      className={`
     fixed top-0 w-full z-50
     transition-shadow transition-[padding] duration-300
     bg-cream ${isScrolled ? 'shadow-lg backdrop-blur-md py-2' : 'py-4'}
   `}
->
+    >
 
 
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center w-full">
           {/* Logo à gauche */}
-    <Link to="/" className="flex items-center">
-      <img
-        src={logo}                         // ← on utilise la variable importée
-        alt="Logo La Falescale"
-        className="h-16 w-auto object-contain self-center hover:scale-105 transition-transform duration-200"
-      />
-    </Link>
+          <Link to="/" className="flex items-center">
+            <img
+              src={logo}                         // ← on utilise la variable importée
+              alt="Logo La Falescale"
+              className="h-16 w-auto object-contain self-center hover:scale-105 transition-transform duration-200 sm:h-16 h-12"
+            />
+          </Link>
 
           {/* Navigation + Language Switcher */}
           <div className="flex items-center flex-1 justify-end">
@@ -80,11 +80,10 @@ const Header = () => {
                 <Link
                   key={path}
                   to={path}
-                  className={`relative font-medium transition-colors duration-200 hover:text-savoyard ${
-                    location.pathname === path
-                      ? 'text-savoyard'
-                      : 'text-warm-brown'
-                  }`}
+                  className={`relative font-medium transition-colors duration-200 hover:text-savoyard ${location.pathname === path
+                    ? 'text-savoyard'
+                    : 'text-warm-brown'
+                    }`}
                 >
                   {t(labelKey)}
                   {location.pathname === path && (
@@ -97,7 +96,7 @@ const Header = () => {
             {/* Langue switch tout à droite */}
             <button
               onClick={toggleLanguage}
-              className="flex items-center ml-2 md:ml-4 px-3 py-2 bg-white rounded-lg shadow hover:bg-savoyard/10 border border-savoyard/30 transition"
+              className="flex items-center ml-2 md:ml-4 px-2 sm:px-3 py-2 bg-white rounded-lg shadow hover:bg-savoyard/10 border border-savoyard/30 transition whitespace-nowrap min-w-[70px]"
               aria-label={ariaLabel}
             >
               {flagIcons}
@@ -126,11 +125,10 @@ const Header = () => {
                   key={path}
                   to={path}
                   onClick={() => setIsMenuOpen(false)}
-                  className={`block py-2 font-medium transition-colors duration-200 hover:text-savoyard ${
-                    location.pathname === path
-                      ? 'text-savoyard'
-                      : 'text-warm-brown'
-                  }`}
+                  className={`block py-2 font-medium transition-colors duration-200 hover:text-savoyard ${location.pathname === path
+                    ? 'text-savoyard'
+                    : 'text-warm-brown'
+                    }`}
                 >
                   {t(labelKey)}
                 </Link>
