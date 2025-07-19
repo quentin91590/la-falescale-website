@@ -7,7 +7,7 @@ const resources = {
       // Navigation / Menu (toujours label à la racine)
       accueil: 'Accueil',
       gite: 'Le Gîte',
-      activites: 'Activités' ,  // 👈 Pour t('activites.label')
+      activites: 'Activités',  // 👈 Pour t('activites.label')
       acces: 'Accès',
       reserver: 'Réserver',
       contact: 'Contact',
@@ -72,7 +72,7 @@ const resources = {
           { id: 8, nom: "Église St-Pancrace", type: "culture", distance: "300m", description: "Église médiévale emblématique d’Yvoire, au clocher étincelant.", rating: 4.5 },
           { id: 9, nom: "Restaurant du Port", type: "restaurant", distance: "400m", description: "Vue lac, cuisine du terroir et saveurs authentiques.", rating: 4.4, website: "https://restaurantduport-yvoire.fr", phone: "+33 4 50 72 80 17" },
           { id: 10, nom: "Plage du Domaine de Rovorée", type: "plage", distance: "1,7km", description: "Plage discrète et nature à 30 min de marche.", rating: 4.8 },
-          { id: 11, nom: "Plage des canards", type: "plage", distance: "600m", description: "Plage secrète, difficile d’accès à pied, mais magique par les eaux du Léman. Demander des conseils pour l'accès.", rating: 4.3,"hasItinerary": false },
+          { id: 11, nom: "Plage des canards", type: "plage", distance: "600m", description: "Plage secrète, difficile d’accès à pied, mais magique par les eaux du Léman. Demander des conseils pour l'accès.", rating: 4.3, "hasItinerary": false },
           { id: 12, nom: "Plage d'Excenevex", type: "plage", distance: "4,4km", description: "Unique plage de sable fin du Léman et ambiance estivale.", rating: 4.4 },
           { id: 13, nom: "Espace boisé des Bouchets", type: "nature", distance: "20m", description: "Espace boisé avec pelouse et tables, idéal pour pique-niquer et se reposer.", rating: 5 },
           { id: 14, nom: "Le Bateau Ivre", type: "restaurant", distance: "300m", description: "Bistrot chaleureux, cuisine du marché et produits locaux au cœur du village.", rating: 4.6, website: "https://www.restaurant-lebateauivre.com/", phone: "+33 4 50 72 81 84" },
@@ -81,31 +81,31 @@ const resources = {
           { id: 17, nom: "Bois de Feycler", type: "nature", distance: "1,0km", description: "Un bois accessible avec circuits de randonnée et VTT pour tous les niveaux", rating: 5 }
         ],
         excursionsSection: {
-            title: "Excursions recommandées",
-            subtitle: "Découvrez la région depuis Yvoire",
-            list: [
-              {
-                titre: "Genève",
-                distance: "45 min en voiture",
-                image: "https://images.pexels.com/photos/11277773/pexels-photo-11277773.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "Ville cosmopolite, jet d’eau."
-              },
-              {
-                titre: "Annecy",
-                distance: "1 h en voiture",
-                image: "https://images.pexels.com/photos/12780893/pexels-photo-12780893.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "Venise des Alpes, lac cristallin."
-              },
-              {
-                titre: "Chamonix",
-                distance: "1 h 30 en voiture",
-                image: "https://images.pexels.com/photos/12358219/pexels-photo-12358219.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "Mont-Blanc et randonnées."
-              }
-            ]
-          }
-          
-          
+          title: "Excursions recommandées",
+          subtitle: "Découvrez la région depuis Yvoire",
+          list: [
+            {
+              titre: "Genève",
+              distance: "45 min en voiture",
+              image: "https://images.pexels.com/photos/11277773/pexels-photo-11277773.jpeg?auto=compress&cs=tinysrgb&w=600",
+              description: "Ville cosmopolite, jet d’eau."
+            },
+            {
+              titre: "Annecy",
+              distance: "1 h en voiture",
+              image: "https://images.pexels.com/photos/12780893/pexels-photo-12780893.jpeg?auto=compress&cs=tinysrgb&w=600",
+              description: "Venise des Alpes, lac cristallin."
+            },
+            {
+              titre: "Chamonix",
+              distance: "1 h 30 en voiture",
+              image: "https://images.pexels.com/photos/12358219/pexels-photo-12358219.jpeg?auto=compress&cs=tinysrgb&w=600",
+              description: "Mont-Blanc et randonnées."
+            }
+          ]
+        }
+
+
       },
 
       // Footer
@@ -284,11 +284,11 @@ const resources = {
           desc: "Découvrez chaque espace de notre gîte de charme",
           // Les images/alt peuvent rester fixes ou être traduits :
           photos: [
-            { src: "-1 - sejour.jpg", alt: "Salon principal" },
-            { src: "-1 - chambre.jpg", alt: "Cuisine équipée" },
+            { src: "sejour.jpg", alt: "Salon principal" },
+            { src: "chambre.jpg", alt: "Cuisine équipée" },
             { src: "Photo_maison.jpg", alt: "Chambre principale" },
-            { src: "-1 - sejour.jpg", alt: "Salle de bain" },
-            { src: "-1 - chambre.jpg", alt: "Terrasse vue lac" },
+            { src: "sejour.jpg", alt: "Salle de bain" },
+            { src: "chambre.jpg", alt: "Terrasse vue lac" },
             { src: "Photo_maison.jpg", alt: "Espace extérieur" }
           ]
         },
@@ -492,32 +492,32 @@ const resources = {
           { id: 17, nom: "Bois de Feycler", type: "nature", distance: "1.0km", description: "A wood accessible with hiking and mountain bike trails for all levels", rating: 5 }
         ],
         excursionsSection: {
-            title: "Recommended excursions",
-            subtitle: "Discover the region from Yvoire",
-            list: [
-              {
-                titre: "Geneva",
-                distance: "45 min by car",
-                image: "https://images.pexels.com/photos/11277773/pexels-photo-11277773.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "Cosmopolitan city, water jet."
-              },
-              {
-                titre: "Annecy",
-                distance: "1 h by car",
-                image: "https://images.pexels.com/photos/12780893/pexels-photo-12780893.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "Venice of the Alps, crystal-clear lake."
-              },
-              {
-                titre: "Chamonix",
-                distance: "1 h 30 by car",
-                image: "https://images.pexels.com/photos/12358219/pexels-photo-12358219.jpeg?auto=compress&cs=tinysrgb&w=600",
-                description: "Mont-Blanc and hiking."
-              }
-            ]
-          }
-          
+          title: "Recommended excursions",
+          subtitle: "Discover the region from Yvoire",
+          list: [
+            {
+              titre: "Geneva",
+              distance: "45 min by car",
+              image: "https://images.pexels.com/photos/11277773/pexels-photo-11277773.jpeg?auto=compress&cs=tinysrgb&w=600",
+              description: "Cosmopolitan city, water jet."
+            },
+            {
+              titre: "Annecy",
+              distance: "1 h by car",
+              image: "https://images.pexels.com/photos/12780893/pexels-photo-12780893.jpeg?auto=compress&cs=tinysrgb&w=600",
+              description: "Venice of the Alps, crystal-clear lake."
+            },
+            {
+              titre: "Chamonix",
+              distance: "1 h 30 by car",
+              image: "https://images.pexels.com/photos/12358219/pexels-photo-12358219.jpeg?auto=compress&cs=tinysrgb&w=600",
+              description: "Mont-Blanc and hiking."
+            }
+          ]
+        }
+
       },
-      
+
 
 
       // Footer
@@ -694,12 +694,12 @@ const resources = {
           title: "Photo gallery",
           desc: "Discover every space of our charming cottage",
           photos: [
-            { src: "-1 - sejour.jpg", alt: "Main living room" },
-            { src: "-1 - chambre.jpg", alt: "Fitted kitchen" },
-            { src: "Photo_maison.jpg", alt: "Main bedroom" },
-            { src: "-1 - sejour.jpg", alt: "Bathroom" },
-            { src: "-1 - chambre.jpg", alt: "Lake-view terrace" },
-            { src: "Photo_maison.jpg", alt: "Outdoor area" }
+            { src: "sejour.jpg", alt: "Salon principal" },
+            { src: "chambre.jpg", alt: "Cuisine équipée" },
+            { src: "Photo_maison.jpg", alt: "Chambre principale" },
+            { src: "sejour.jpg", alt: "Salle de bain" },
+            { src: "chambre.jpg", alt: "Terrasse vue lac" },
+            { src: "Photo_maison.jpg", alt: "Espace extérieur" }
           ]
         },
         cta: {
@@ -821,8 +821,8 @@ const resources = {
             contactBtn: "Contact us"
           }
         }
-      }     
-      
+      }
+
     }
   }
 };

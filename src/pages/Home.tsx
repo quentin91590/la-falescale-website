@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import photoMaison from '../assets/Photo_maison.jpg';
-import sejourImg   from '../assets/-1 - sejour.jpg';
-import chambreImg  from '../assets/-1 - chambre.jpg';
+import sejourImg from '../assets/sejour.jpg';
+import chambreImg from '../assets/chambre.jpg';
 
 import {
   ChevronLeft,

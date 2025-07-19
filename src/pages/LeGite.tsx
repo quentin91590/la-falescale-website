@@ -13,13 +13,13 @@ import { useTranslation } from 'react-i18next';
 
 // --- IMPORT DES IMAGES ---
 import photoMaison from '../assets/Photo_maison.jpg';
-import sejourImg   from '../assets/-1 - sejour.jpg';
-import chambreImg  from '../assets/-1 - chambre.jpg';
+import sejourImg from '../assets/sejour.jpg';
+import chambreImg from '../assets/chambre.jpg';
 
 // --- MAPPING pour galerie ---
 const photoMapping: Record<string, string> = {
-  '-1 - sejour.jpg': sejourImg,
-  '-1 - chambre.jpg': chambreImg,
+  'sejour.jpg': sejourImg,
+  'chambre.jpg': chambreImg,
   'Photo_maison.jpg': photoMaison,
 };
 
