@@ -1,11 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-const imageMap = {
-  '-1 - sejour.jpg': '/assets/-1 - sejour.jpg',
-  '-1 - chambre.jpg': '/assets/-1 - chambre.jpg',
-  'Photo_maison.jpg': '/assets/Photo_maison.jpg',
-};
 const resources = {
   fr: {
     translation: {
