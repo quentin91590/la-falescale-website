@@ -59,6 +59,7 @@ const iconMap = {
   Car,
 };
 
+
 interface Feature {
   icon: keyof typeof iconMap;
   text: string;
