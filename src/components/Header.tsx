@@ -101,7 +101,6 @@ const Header = () => {
               aria-label={ariaLabel}
             >
               {flagIcons}
-              <span>{langLabel}</span>
             </button>
 
             {/* Mobile Menu Button */}
