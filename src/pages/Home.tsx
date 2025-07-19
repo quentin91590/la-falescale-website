@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import photoMaison from '../assets/Photo_maison.jpg';
 import sejourImg from '../assets/sejour.jpg';
 import chambreImg from '../assets/chambre.jpg';
-
+import { motion } from "framer-motion";
+import { useInView } from 'react-intersection-observer';
 import {
   ChevronLeft,
   ChevronRight,
@@ -17,6 +18,7 @@ import {
 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 
+// --- HOOK BANDE CENTRALE ---
 function useCenterBand(thresholdTop = 0.33, thresholdBottom = 0.66) {
   const ref = useRef<HTMLDivElement>(null);
   const [isCentered, setIsCentered] = useState(false);
@@ -31,7 +33,6 @@ function useCenterBand(thresholdTop = 0.33, thresholdBottom = 0.66) {
       const bandBottom = vh * thresholdBottom;
       setIsCentered(center >= bandTop && center <= bandBottom);
     }
-
     checkPosition();
     window.addEventListener('scroll', checkPosition);
     window.addEventListener('resize', checkPosition);
@@ -40,10 +41,15 @@ function useCenterBand(thresholdTop = 0.33, thresholdBottom = 0.66) {
       window.removeEventListener('resize', checkPosition);
     };
   }, [thresholdTop, thresholdBottom]);
-
   return [ref, isCentered] as const;
 }
 
+// Retourne N [ref, isCentered] pour chaque image :
+function useCenterBands(count: number, thresholdTop = 0.33, thresholdBottom = 0.66) {
+  return Array.from({ length: count }, () => useCenterBand(thresholdTop, thresholdBottom));
+}
+
+// --- ICONES ---
 const iconMap = {
   Waves,
   Castle,
@@ -70,19 +76,8 @@ interface Testimonial {
 const Home = () => {
   const { t } = useTranslation();
 
-const [ref1, isCentered1] = useCenterBand(0.33, 0.66); // Bande centrale (de 33% à 66% de la hauteur)
-const [ref2, isCentered2] = useCenterBand(0.33, 0.66);
-const [ref3, isCentered3] = useCenterBand(0.33, 0.66);
-const centerBands = [
-  { ref: ref1, centered: isCentered1 },
-  { ref: ref2, centered: isCentered2 },
-  { ref: ref3, centered: isCentered3 },
-];
-
-
   const images = [chambreImg, sejourImg, photoMaison];
-
-// On prépare une liste de hooks (refs/inView) à la bonne taille :
+  const centerBands = useCenterBands(images.length, 0.33, 0.66);
 
   const [currentSlide, setCurrentSlide] = useState(0);
   const touchStartX = useRef(0);
@@ -116,17 +111,12 @@ const centerBands = [
   const handleTouchEnd = (e: React.TouchEvent) => {
     touchEndX.current = e.changedTouches[0].clientX;
     const deltaX = touchStartX.current - touchEndX.current;
-
-    if (deltaX > swipeThreshold) {
-      nextSlide();
-    } else if (deltaX < -swipeThreshold) {
-      prevSlide();
-    }
+    if (deltaX > swipeThreshold) nextSlide();
+    else if (deltaX < -swipeThreshold) prevSlide();
   };
 
   return (
     <div className="pt-20">
-
       {/* Hero Section - IMAGE/CAROUSEL */}
       <section
         className="relative w-full aspect-[16/9] sm:h-screen overflow-hidden"
@@ -149,7 +139,6 @@ const centerBands = [
             </div>
           ))}
         </div>
-
         {/* Navigation arrows */}
         <button
           onClick={prevSlide}
@@ -163,7 +152,6 @@ const centerBands = [
         >
           <ChevronRight className="w-4 h-4 sm:w-6 sm:h-6 text-cream" />
         </button>
-
         {/* Slide indicators */}
         <div className="absolute bottom-4 sm:bottom-6 left-1/2 -translate-x-1/2 flex space-x-2 z-10">
           {heroImages.map((_, index) => (
@@ -175,7 +163,6 @@ const centerBands = [
             />
           ))}
         </div>
-
         {/* Texte + bouton superposés – uniquement sur desktop/tablette */}
         <div className="hidden sm:flex absolute inset-0 flex-col items-center justify-center text-center px-4 sm:px-6 lg:px-8 z-10">
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-cream">
@@ -224,88 +211,96 @@ const centerBands = [
       </div>
 
       {/* Features Section */}
-      <section className="py-16 bg-cream">
+
+
+<section className="py-20 bg-cream">
+  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10">
+      {features.map((feature: Feature, index: number) => {
+        const Icon = iconMap[feature.icon] || Waves;
+        const [ref, centered] = useCenterBand(0.15, 0.75);
+        return (
+          <motion.div
+            ref={ref}
+            key={index}
+            className="flex flex-col items-center text-center group cursor-pointer"
+            initial={{ y: 40, scale: 0.85, opacity: 0 }}
+            animate={
+              centered
+                ? { y: 0, scale: 1, opacity: 1 }
+                : { y: 30, scale: 0.95, opacity: 0.5 }
+            }
+            transition={{ delay: index * 0.11, type: "spring", stiffness: 380, damping: 16 }}
+            whileHover={{
+              scale: 1.12,
+              rotate: [0, 10, -10, 0],
+              boxShadow: "0 12px 24px 0 rgba(80,32,18,0.12)",
+              transition: { duration: 0.36, type: "spring" },
+            }}
+            whileTap={{ scale: 0.94 }}
+          >
+            <motion.div
+              className="w-16 h-16 bg-savoyard/10 rounded-2xl flex items-center justify-center mb-3 shadow-md group-hover:shadow-lg transition-all duration-300"
+              whileHover={{
+                backgroundColor: "rgba(135, 80, 40, 0.18)",
+              }}
+            >
+              <Icon className="w-9 h-9 text-savoyard drop-shadow-[0_3px_6px_rgba(102,40,0,0.07)]" />
+            </motion.div>
+            <p className="text-warm-brown font-semibold text-base sm:text-lg leading-snug mt-1">
+              {feature.text}
+            </p>
+          </motion.div>
+        );
+      })}
+    </div>
+  </div>
+</section>      {/* Gallery Preview */}
+      <section className="py-16">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-            {features.map((feature: Feature, index: number) => {
-              const Icon = iconMap[feature.icon] || Waves;
+          <div className="text-center mb-12">
+            <h2 className="font-playfair text-3xl md:text-4xl font-bold text-warm-brown mb-4">
+              {t('home.gallery.title')}
+            </h2>
+            <p className="text-soft-green text-lg max-w-2xl mx-auto">
+              {t('home.gallery.subtitle')}
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {images.map((image, index) => {
+              const [ref, centered] = centerBands[index];
               return (
                 <div
+                  ref={ref}
                   key={index}
-                  className="text-center group animate-slide-up"
-                  style={{ animationDelay: `${index * 0.1}s` }}
+                  className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up"
+                  style={{ animationDelay: `${index * 0.2}s` }}
                 >
-                  <div className="w-16 h-16 bg-savoyard/10 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:bg-savoyard/20 transition-colors">
-                    <Icon className="w-8 h-8 text-savoyard" />
-                  </div>
-                  <p className="text-warm-brown font-medium">{feature.text}</p>
+                  <img
+                    src={image}
+                    alt={`Intérieur du gîte ${index + 1}`}
+                    className={`
+                      w-full h-64 object-cover transition-transform duration-500
+                      ${centered ? 'scale-110' : 'scale-100'}
+                      sm:scale-100 sm:group-hover:scale-110
+                    `}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
               );
             })}
           </div>
+          <div className="text-center mt-8">
+            <Link
+              to="/le-gite"
+              className="inline-block bg-warm-brown hover:bg-dark-brown text-cream px-6 py-3 rounded-full font-medium transition-colors"
+            >
+              {t('home.gallery.button')}
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Gallery Preview */}
-{/* Gallery Preview */}
-<section className="py-16">
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center mb-12">
-      <h2 className="font-playfair text-3xl md:text-4xl font-bold text-warm-brown mb-4">
-        {t('home.gallery.title')}
-      </h2>
-      <p className="text-soft-green text-lg max-w-2xl mx-auto">
-        {t('home.gallery.subtitle')}
-      </p>
-    </div>
-
-    {/** === La déclaration des hooks pour chaque image (place ça AVANT le return, DANS le composant Home) === **/}
-    {/* 
-    const [ref1, isCentered1] = useCenterBand(0.33, 0.66);
-    const [ref2, isCentered2] = useCenterBand(0.33, 0.66);
-    const [ref3, isCentered3] = useCenterBand(0.33, 0.66);
-    const centerBands = [
-      { ref: ref1, centered: isCentered1 },
-      { ref: ref2, centered: isCentered2 },
-      { ref: ref3, centered: isCentered3 },
-    ]; 
-    */}
-
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {images.map((image, index) => {
-        const { ref, centered } = centerBands[index];
-        return (
-          <div
-            ref={ref}
-            key={index}
-            className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up"
-            style={{ animationDelay: `${index * 0.2}s` }}
-          >
-            <img
-              src={image}
-              alt={`Intérieur du gîte ${index + 1}`}
-              className={`
-                w-full h-64 object-cover transition-transform duration-500
-                ${centered ? 'scale-110' : 'scale-100'}
-                sm:scale-100 sm:group-hover:scale-110
-              `}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-          </div>
-        );
-      })}
-    </div>
-
-    <div className="text-center mt-8">
-      <Link
-        to="/le-gite"
-        className="inline-block bg-warm-brown hover:bg-dark-brown text-cream px-6 py-3 rounded-full font-medium transition-colors"
-      >
-        {t('home.gallery.button')}
-      </Link>
-    </div>
-  </div>
-</section>
       {/* Activities Preview */}
       <section className="py-16 bg-soft-green/10">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -317,7 +312,6 @@ const centerBands = [
               {t('home.activities.subtitle')}
             </p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {activities.map((activity: Activity, index: number) => (
               <div
@@ -332,7 +326,6 @@ const centerBands = [
               </div>
             ))}
           </div>
-
           <div className="text-center mt-8">
             <Link
               to="/activites"
@@ -352,7 +345,6 @@ const centerBands = [
               {t('home.testimonials.title')}
             </h2>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {testimonials.map((testimonial: Testimonial, index: number) => (
               <div
