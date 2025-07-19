@@ -216,43 +216,49 @@ const Home = () => {
 <section className="py-16 bg-cream">
   <div className="container mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10">
-      {features.map((feature: Feature, index: number) => {
-        const Icon = iconMap[feature.icon] || Waves;
-        const [ref, centered] = useCenterBand(0.15, 0.75);
-        return (
-          <motion.div
-            ref={ref}
-            key={index}
-            className="flex flex-col items-center text-center group cursor-pointer"
-            initial={{ y: 40, scale: 0.85, opacity: 0 }}
-            animate={
-              centered
-                ? { y: 0, scale: 1, opacity: 1 }
-                : { y: 30, scale: 0.95, opacity: 0.5 }
-            }
-            transition={{ delay: index * 0.11, type: "spring", stiffness: 380, damping: 16 }}
-            whileHover={{
-              scale: 1.12,
-              rotate: [0, 10, -10, 0],
-              boxShadow: "0 12px 24px 0 rgba(80,32,18,0.12)",
-              transition: { duration: 0.36, type: "spring" },
-            }}
-            whileTap={{ scale: 0.94 }}
-          >
-            <motion.div
-              className="w-16 h-16 bg-savoyard/10 rounded-2xl flex items-center justify-center mb-3 shadow-md group-hover:shadow-lg transition-all duration-300"
-              whileHover={{
-                backgroundColor: "rgba(135, 80, 40, 0.18)",
-              }}
-            >
-              <Icon className="w-9 h-9 text-savoyard drop-shadow-[0_3px_6px_rgba(102,40,0,0.07)]" />
-            </motion.div>
-            <p className="text-warm-brown font-semibold text-base sm:text-lg leading-snug mt-1">
-              {feature.text}
-            </p>
-          </motion.div>
-        );
-      })}
+{features.map((feature: Feature, index: number) => {
+  const Icon = iconMap[feature.icon] || Waves;
+
+  // Responsive: seulement sur mobile on veut l’effet "scroll"
+  const isMobile = window.innerWidth < 640;
+  const [ref, centered] = useCenterBand(0.15, 0.75);
+
+  return (
+    <motion.div
+      ref={isMobile ? ref : undefined}
+      key={index}
+      className="flex flex-col items-center text-center group cursor-pointer"
+      initial={{ y: 40, scale: 0.85, opacity: 0 }}
+      animate={
+        isMobile
+          ? (centered
+              ? { y: 0, scale: 1, opacity: 1 }
+              : { y: 30, scale: 0.95, opacity: 0.5 })
+          : { y: 0, scale: 1, opacity: 1 }
+      }
+      transition={{ delay: index * 0.11, type: "spring", stiffness: 380, damping: 16 }}
+      whileHover={{
+        scale: 1.12,
+        rotate: [0, 10, -10, 0],
+        boxShadow: "0 12px 24px 0 rgba(80,32,18,0.12)",
+        transition: { duration: 0.36, type: "spring" },
+      }}
+      whileTap={{ scale: 0.94 }}
+    >
+      <motion.div
+        className="w-16 h-16 bg-savoyard/10 rounded-2xl flex items-center justify-center mb-3 shadow-md group-hover:shadow-lg transition-all duration-300"
+        whileHover={{
+          backgroundColor: "rgba(135, 80, 40, 0.18)",
+        }}
+      >
+        <Icon className="w-9 h-9 text-savoyard drop-shadow-[0_3px_6px_rgba(102,40,0,0.07)]" />
+      </motion.div>
+      <p className="text-warm-brown font-semibold text-base sm:text-lg leading-snug mt-1">
+        {feature.text}
+      </p>
+    </motion.div>
+  );
+})}
     </div>
   </div>
 </section>      {/* Gallery Preview */}
