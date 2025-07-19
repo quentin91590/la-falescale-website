@@ -213,7 +213,7 @@ const Home = () => {
       {/* Features Section */}
 
 
-<section className="py-20 bg-cream">
+<section className="py-16 bg-cream">
   <div className="container mx-auto px-4 sm:px-6 lg:px-8">
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-10">
       {features.map((feature: Feature, index: number) => {
