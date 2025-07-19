@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import logo from '../assets/logo.png';
 
 const UK_FLAG = "https://flagcdn.com/w40/gb.png";
 const US_FLAG = "https://flagcdn.com/w40/us.png";
@@ -63,13 +64,13 @@ const Header = () => {
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center w-full">
           {/* Logo à gauche */}
-          <Link to="/" className="flex items-center">
-            <img
-              src="/logo.png"
-              alt="Logo La Falescale"
-              className="h-16 w-auto object-contain self-center hover:scale-105 transition-transform duration-200"
-            />
-          </Link>
+    <Link to="/" className="flex items-center">
+      <img
+        src={logo}                         // ← on utilise la variable importée
+        alt="Logo La Falescale"
+        className="h-16 w-auto object-contain self-center hover:scale-105 transition-transform duration-200"
+      />
+    </Link>
 
           {/* Navigation + Language Switcher */}
           <div className="flex items-center flex-1 justify-end">

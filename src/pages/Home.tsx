@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import photoMaison from '../assets/Photo_maison.jpg';
+import sejourImg from '../assets/sejour.jpg';
+import chambreImg from '../assets/chambre.jpg';
+
 import {
   ChevronLeft,
   ChevronRight,
@@ -41,11 +45,11 @@ const Home = () => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const heroImages = [
-    'Photo_maison.jpg',
-    '-1 - sejour.jpg',
-    '-1 - chambre.jpg',
-  ];
+const heroImages = [
+  photoMaison,
+  sejourImg,
+  chambreImg,
+];
 
   // *** Ces lignes doivent être DANS le composant, pas dehors ! ***
   const features = t('home.features', { returnObjects: true }) as Feature[];
@@ -64,6 +68,7 @@ const Home = () => {
 
   return (
     <div className="pt-20">
+
       {/* Hero Section */}
       <section className="relative h-screen overflow-hidden">
         <div className="absolute inset-0">
@@ -74,11 +79,11 @@ const Home = () => {
                 index === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}
             >
-              <img
-                src={image}
-                alt={`Vue de La Falescale ${index + 1}`}
-                className="w-full h-full object-cover"
-              />
+<img
+  src={image}
+  alt={`Vue de La Falescale ${index + 1}`}
+  className="w-full h-full object-cover"
+/>
               <div className="absolute inset-0 bg-black/30"></div>
             </div>
           ))}
@@ -174,8 +179,7 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {['-1 - chambre.jpg', '-1 - sejour.jpg', 'Photo_maison.jpg'].map(
-              (image, index) => (
+            { [chambreImg, sejourImg, photoMaison].map((image, index) => (
                 <div
                   key={index}
                   className="relative group overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 animate-slide-up"
