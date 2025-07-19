@@ -38,18 +38,18 @@ const Header = () => {
 
 
   // Drapeaux EN côte à côte, même taille que FR, séparés par un /
-const flagIcons =
-  nextLang === 'en' ? (
-    <div className="flex items-center justify-center space-x-1 h-5">
-      <img src={UK_FLAG} alt="UK" className="w-5 h-5 rounded-sm" />
-      <span className="text-warm-brown font-bold text-base leading-5">/</span>
-      <img src={US_FLAG} alt="US" className="w-5 h-5 rounded-sm" />
-    </div>
-  ) : (
-    <div className="flex items-center justify-center h-5">
-      <img src={FR_FLAG} alt="FR" className="w-5 h-5 rounded-sm" />
-    </div>
-  );
+  const flagIcons =
+    nextLang === 'en' ? (
+      <div className="flex items-center justify-center space-x-1 h-5">
+        <img src={UK_FLAG} alt="UK" className="w-5 h-5 rounded-sm" />
+        <span className="text-warm-brown font-bold text-base leading-5">/</span>
+        <img src={US_FLAG} alt="US" className="w-5 h-5 rounded-sm" />
+      </div>
+    ) : (
+      <div className="flex items-center justify-center h-5">
+<img src={FR_FLAG} alt="FR" className="w-5 h-5 flex-shrink-0 rounded-sm" />
+      </div>
+    );
 
   const toggleLanguage = () => {
     i18n.changeLanguage(nextLang);
@@ -98,18 +98,18 @@ const flagIcons =
             </div>
 
             {/* Langue switch tout à droite */}
-<button
-  onClick={toggleLanguage}
-  className={`
+            <button
+              onClick={toggleLanguage}
+              className={`
     flex items-center justify-center ml-2 md:ml-4 px-3 py-2 
     bg-white rounded-lg shadow hover:bg-savoyard/10 
     border border-savoyard/30 transition 
     ${buttonMinWidth}
   `}
-  aria-label={ariaLabel}
->
-  {flagIcons}
-</button>
+              aria-label={ariaLabel}
+            >
+              {flagIcons}
+            </button>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
