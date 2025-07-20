@@ -211,7 +211,7 @@ const Acces = () => {
               title={transport.bus.title}
               list={transport.bus.infos}
               linkText={transport.bus.busBtn}
-              link="https://www.tp-info.ch/sites/default/files/fap/2025/pdf/11.271.pdf"
+              link="https://www.sbb.ch/fr?stops=[{%22value%22:%228587057%22,%22type%22:%22ID%22,%22label%22:%22Gen%C3%A8ve,+gare+Cornavin%22},{%22label%22:%22Yvoire,+Pre+Ponce%22,%22type%22:%22ID%22,%22value%22:%221401138%22}]&date=%222025-07-20%22&time=%2214:40%22&moment=%22DEPARTURE%22"
             />
             {/* Carte avion */}
             <TransportCard

@@ -364,7 +364,7 @@ const resources = {
             infos: [
               "Bateau Nyon-Yvoire : toute l’année (ligne CGN N3)",
               "Croisières Genève → Yvoire en été",
-              "Port de plaisance (400m) : amarrage visiteurs, carburant"
+              "Port de plaisance (400m) : amarrage visiteurs, pas de carburant"
             ],
             bateauBtn: "Voir horaires bateaux"
           }
@@ -774,7 +774,7 @@ const resources = {
             infos: [
               "Boat Nyon–Yvoire: all year round (CGN line N3)",
               "Geneva → Yvoire cruises in summer",
-              "Marina (400m): visitor mooring, fuel"
+              "Marina (400m): visitor mooring, no fuel"
             ],
             bateauBtn: "See boat timetables"
           }
