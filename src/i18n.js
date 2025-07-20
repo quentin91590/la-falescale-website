@@ -411,7 +411,45 @@ const resources = {
             contactBtn: "Nous contacter"
           }
         }
-      }
+      },
+      contactPage: {
+        header: {
+          title: "Contact",
+          subtitle: "Nous sommes là pour vous accompagner dans l'organisation de votre séjour et répondre à toutes vos questions"
+        },
+        info: {
+          title: "Nos coordonnées",
+          address: { title: "Adresse" },
+          phone: {
+            title: "Téléphone",
+            available: "Disponible de 9h à 19h"
+          },
+          email: {
+            title: "Email",
+            response: "Réponse sous 24h"
+          },
+          whatsapp: {
+            title: "WhatsApp",
+            response: "Réponse rapide"
+          },
+          social: { title: "Suivez-nous" }
+        },
+        form: {
+          title: "Envoyez-nous un message",
+          name: "Nom complet *",
+          namePlaceholder: "Votre nom",
+          email: "Email *",
+          emailPlaceholder: "votre@email.com",
+          phone: "Téléphone",
+          phonePlaceholder: "+33 6 12 34 56 78",
+          arrival: "Date d'arrivée souhaitée",
+          departure: "Date de départ souhaitée",
+          message: "Message *",
+          messagePlaceholder: "Parlez-nous de votre projet de séjour, vos questions, besoins spécifiques...",
+          send: "Envoyer le message",
+          success: "Message envoyé ! Nous vous répondrons dans les plus brefs délais."
+        }
+      },
     }
   },
   en: {
@@ -821,8 +859,45 @@ const resources = {
             contactBtn: "Contact us"
           }
         }
-      }
-
+      },
+      contactPage: {
+        header: {
+          title: "Contact",
+          subtitle: "We are here to help organize your stay and answer all your questions"
+        },
+        info: {
+          title: "Contact details",
+          address: { title: "Address" },
+          phone: {
+            title: "Phone",
+            available: "Available from 9am to 7pm"
+          },
+          email: {
+            title: "Email",
+            response: "Reply within 24h"
+          },
+          whatsapp: {
+            title: "WhatsApp",
+            response: "Quick reply"
+          },
+          social: { title: "Follow us" }
+        },
+        form: {
+          title: "Send us a message",
+          name: "Full name *",
+          namePlaceholder: "Your name",
+          email: "Email *",
+          emailPlaceholder: "your@email.com",
+          phone: "Phone",
+          phonePlaceholder: "+1 555 123 4567",
+          arrival: "Desired arrival date",
+          departure: "Desired departure date",
+          message: "Message *",
+          messagePlaceholder: "Tell us about your project, your questions or special needs...",
+          send: "Send message",
+          success: "Message sent! We will reply as soon as possible."
+        }
+      },
     }
   }
 };

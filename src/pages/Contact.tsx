@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { MapPin, Phone, Mail, Send, MessageCircle, Instagram, Facebook } from 'lucide-react';
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     nom: '',
     email: '',
@@ -11,14 +14,14 @@ const Contact = () => {
     dateDepart: '',
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  e.preventDefault();
     // Logique d'envoi du formulaire
     console.log('Formulaire envoyé:', formData);
-    alert('Message envoyé ! Nous vous répondrons dans les plus brefs délais.');
+    alert(t('contactPage.form.success'));
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({
       ...formData,
       [e.target.name]: e.target.value,
@@ -35,15 +38,13 @@ const Contact = () => {
       <section style={{ backgroundColor: "#a32b2b" }} className="py-16 text-cream">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4">
-            Contact
+            {t('contactPage.header.title')}
           </h1>
           <p className="text-xl opacity-90 max-w-3xl mx-auto">
-            Nous sommes là pour vous accompagner dans l'organisation de votre séjour 
-            et répondre à toutes vos questions
+            {t('contactPage.header.subtitle')}
           </p>
         </div>
       </section>
-
 
       {/* Contact & Formulaire */}
       <section className="py-16">
@@ -52,70 +53,65 @@ const Contact = () => {
             {/* Informations de contact */}
             <div className="animate-slide-in">
               <h2 className="font-playfair text-3xl font-bold text-warm-brown mb-8">
-                Nos coordonnées
+                {t('contactPage.info.title')}
               </h2>
-              
               <div className="space-y-6">
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-savoyard/10 rounded-full flex items-center justify-center">
                     <MapPin className="w-6 h-6 text-savoyard" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-warm-brown mb-1">Adresse</h3>
+                    <h3 className="font-semibold text-warm-brown mb-1">{t('contactPage.info.address.title')}</h3>
                     <p className="text-soft-green">
                       La Falescale<br />
-                      Rue du Lac, 74140 Yvoire<br />
+                      130 rue des Bouchets, 74140 Yvoire<br />
                       Haute-Savoie, France
                     </p>
                   </div>
                 </div>
-
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-savoyard/10 rounded-full flex items-center justify-center">
                     <Phone className="w-6 h-6 text-savoyard" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-warm-brown mb-1">Téléphone</h3>
-                    <a href="tel:+33612345678" className="text-soft-green hover:text-savoyard transition-colors">
-                      +33 6 12 34 56 78
+                    <h3 className="font-semibold text-warm-brown mb-1">{t('contactPage.info.phone.title')}</h3>
+                    <a href="tel:+33665689483" className="text-soft-green hover:text-savoyard transition-colors">
+                      +33 6 65 68 94 83
                     </a>
-                    <p className="text-sm text-soft-green/80">Disponible de 9h à 19h</p>
+                    <p className="text-sm text-soft-green/80">{t('contactPage.info.phone.available')}</p>
                   </div>
                 </div>
-
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-savoyard/10 rounded-full flex items-center justify-center">
                     <Mail className="w-6 h-6 text-savoyard" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-warm-brown mb-1">Email</h3>
+                    <h3 className="font-semibold text-warm-brown mb-1">{t('contactPage.info.email.title')}</h3>
                     <a href="mailto:contact@lafalescale.fr" className="text-soft-green hover:text-savoyard transition-colors">
                       contact@lafalescale.fr
                     </a>
-                    <p className="text-sm text-soft-green/80">Réponse sous 24h</p>
+                    <p className="text-sm text-soft-green/80">{t('contactPage.info.email.response')}</p>
                   </div>
                 </div>
-
                 <div className="flex items-start space-x-4">
                   <div className="w-12 h-12 bg-savoyard/10 rounded-full flex items-center justify-center">
                     <MessageCircle className="w-6 h-6 text-savoyard" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-warm-brown mb-1">WhatsApp</h3>
+                    <h3 className="font-semibold text-warm-brown mb-1">{t('contactPage.info.whatsapp.title')}</h3>
                     <button 
                       onClick={openWhatsApp}
                       className="text-soft-green hover:text-savoyard transition-colors cursor-pointer"
                     >
-                      +33 6 12 34 56 78
+                      +33 6 65 68 94 83
                     </button>
-                    <p className="text-sm text-soft-green/80">Réponse rapide</p>
+                    <p className="text-sm text-soft-green/80">{t('contactPage.info.whatsapp.response')}</p>
                   </div>
                 </div>
               </div>
-
               {/* Réseaux sociaux */}
               <div className="mt-8">
-                <h3 className="font-semibold text-warm-brown mb-4">Suivez-nous</h3>
+                <h3 className="font-semibold text-warm-brown mb-4">{t('contactPage.info.social.title')}</h3>
                 <div className="flex space-x-4">
                   <a
                     href="https://www.instagram.com/lafalescale"
@@ -136,18 +132,16 @@ const Contact = () => {
                 </div>
               </div>
             </div>
-
             {/* Formulaire de contact */}
             <div className="bg-cream p-8 rounded-2xl shadow-lg animate-slide-up">
               <h2 className="font-playfair text-2xl font-bold text-warm-brown mb-6">
-                Envoyez-nous un message
+                {t('contactPage.form.title')}
               </h2>
-              
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-warm-brown font-medium mb-2">
-                      Nom complet *
+                      {t('contactPage.form.name')}
                     </label>
                     <input
                       type="text"
@@ -156,12 +150,12 @@ const Contact = () => {
                       value={formData.nom}
                       onChange={handleChange}
                       className="w-full p-3 border border-soft-green/30 rounded-lg focus:ring-2 focus:ring-savoyard focus:border-transparent"
-                      placeholder="Votre nom"
+                      placeholder={t('contactPage.form.namePlaceholder')}
                     />
                   </div>
                   <div>
                     <label className="block text-warm-brown font-medium mb-2">
-                      Email *
+                      {t('contactPage.form.email')}
                     </label>
                     <input
                       type="email"
@@ -170,14 +164,13 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       className="w-full p-3 border border-soft-green/30 rounded-lg focus:ring-2 focus:ring-savoyard focus:border-transparent"
-                      placeholder="votre@email.com"
+                      placeholder={t('contactPage.form.emailPlaceholder')}
                     />
                   </div>
                 </div>
-
                 <div>
                   <label className="block text-warm-brown font-medium mb-2">
-                    Téléphone
+                    {t('contactPage.form.phone')}
                   </label>
                   <input
                     type="tel"
@@ -185,14 +178,13 @@ const Contact = () => {
                     value={formData.telephone}
                     onChange={handleChange}
                     className="w-full p-3 border border-soft-green/30 rounded-lg focus:ring-2 focus:ring-savoyard focus:border-transparent"
-                    placeholder="+33 6 12 34 56 78"
+                    placeholder={t('contactPage.form.phonePlaceholder')}
                   />
                 </div>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label className="block text-warm-brown font-medium mb-2">
-                      Date d'arrivée souhaitée
+                      {t('contactPage.form.arrival')}
                     </label>
                     <input
                       type="date"
@@ -204,7 +196,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <label className="block text-warm-brown font-medium mb-2">
-                      Date de départ souhaitée
+                      {t('contactPage.form.departure')}
                     </label>
                     <input
                       type="date"
@@ -215,10 +207,9 @@ const Contact = () => {
                     />
                   </div>
                 </div>
-
                 <div>
                   <label className="block text-warm-brown font-medium mb-2">
-                    Message *
+                    {t('contactPage.form.message')}
                   </label>
                   <textarea
                     name="message"
@@ -227,16 +218,15 @@ const Contact = () => {
                     value={formData.message}
                     onChange={handleChange}
                     className="w-full p-3 border border-soft-green/30 rounded-lg focus:ring-2 focus:ring-savoyard focus:border-transparent resize-none"
-                    placeholder="Parlez-nous de votre projet de séjour, vos questions, besoins spécifiques..."
+                    placeholder={t('contactPage.form.messagePlaceholder')}
                   />
                 </div>
-
                 <button
                   type="submit"
                   className="w-full bg-savoyard hover:bg-light-savoyard text-cream py-3 px-6 rounded-lg font-semibold transition-colors flex items-center justify-center space-x-2"
                 >
                   <Send className="w-5 h-5" />
-                  <span>Envoyer le message</span>
+                  <span>{t('contactPage.form.send')}</span>
                 </button>
               </form>
             </div>
