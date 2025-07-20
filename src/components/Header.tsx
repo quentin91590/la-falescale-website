@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
 import logo from '../assets/logo.png';
 
 const UK_FLAG = "https://flagcdn.com/w40/gb.png";
-const US_FLAG = "https://flagcdn.com/w40/us.png";
 const FR_FLAG = "https://flagcdn.com/w40/fr.png";
 
 const Header = () => {
@@ -33,23 +31,15 @@ const Header = () => {
   const ariaLabel = nextLang === 'en'
     ? "Switch to English"
     : "Passer en français";
-  const buttonMinWidth =
-    nextLang === 'en' ? 'min-w-[84px]' : 'min-w-[40px]'; // ← à ajuster selon visuel
-
 
   // Drapeaux EN côte à côte, même taille que FR, séparés par un /
-  const flagIcons =
-    nextLang === 'en' ? (
-      <div className="flex items-center justify-center space-x-1 h-5">
-        <img src={UK_FLAG} alt="UK" className="w-5 h-5 min-w-[20px] flex-shrink-0 rounded-sm" />
-        <span className="text-warm-brown font-bold text-base leading-5">/</span>
-        <img src={US_FLAG} alt="US" className="w-5 h-5 min-w-[20px] flex-shrink-0 rounded-sm" />
-      </div>
-    ) : (
-      <div className="flex items-center justify-center h-5">
-        <img src={FR_FLAG} alt="FR" className="w-5 h-5 min-w-[20px] flex-shrink-0 rounded-sm" />
-      </div>
-    );
+const flagIcons = (
+  <img
+    src={nextLang === 'en' ? UK_FLAG : FR_FLAG}
+    alt={nextLang === 'en' ? "UK" : "FR"}
+    className="w-5 h-5 min-w-[20px] flex-shrink-0 rounded-sm"
+  />
+);
   const toggleLanguage = () => {
     i18n.changeLanguage(nextLang);
   };
@@ -97,29 +87,19 @@ const Header = () => {
             </div>
 
             {/* Langue switch tout à droite */}
-            <button
-              onClick={toggleLanguage}
-              className={`
+<button
+  onClick={toggleLanguage}
+  className={`
     flex items-center justify-center ml-2 md:ml-4 px-3 py-2 
     bg-white rounded-lg shadow hover:bg-savoyard/10 
     border border-savoyard/30 transition
-    flex-shrink-0 ${buttonMinWidth}
+    flex-shrink-0 min-w-[40px]
   `}
-              aria-label={ariaLabel}
-            >
-              {flagIcons}
-            </button>
-            {/* Mobile Menu Button */}
-            <button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-savoyard/10 transition-colors ml-2"
-            >
-              {isMenuOpen ? (
-                <X className="w-6 h-6 text-warm-brown" />
-              ) : (
-                <Menu className="w-6 h-6 text-warm-brown" />
-              )}
-            </button>
+  aria-label={ariaLabel}
+>
+  {flagIcons}
+</button>
+
           </div>
         </div>
 
