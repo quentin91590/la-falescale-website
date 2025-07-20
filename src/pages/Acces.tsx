@@ -201,7 +201,7 @@ const Acces = () => {
               title={transport.train.title}
               list={transport.train.infos}
               linkText={transport.train.trainBtn}
-              link="https://www.sncf-connect.com"
+              link="https://www.sbb.ch/fr?stops=[{%22value%22:%228501008%22,%22type%22:%22ID%22,%22label%22:%22Gen%C3%A8ve%22},{%22value%22:%228501030%22,%22type%22:%22ID%22,%22label%22:%22Nyon%22}]&date=%222025-07-20%22&time=%2214:40%22&moment=%22DEPARTURE%22"
               link2Text={transport.train.bateauBtn}
               link2="https://www.cgn.ch/fr/horaires-billets"
             />
@@ -219,7 +219,7 @@ const Acces = () => {
               title={transport.avion.title}
               list={transport.avion.infos}
               linkText={transport.avion.geneveBtn}
-              link="https://www.gva.ch"
+              link="https://www.gva.ch/fr/Site/Passagers/Vols/Destinations-depart-Geneve?utm_source=Menu&utm_medium=GVAch&utm_campaign=Reserver-vol#widget-holder"
               link2Text={transport.avion.lyonBtn}
               link2="https://www.google.com/maps/dir/?api=1&origin=Lyon+Saint-Exupery+Airport&destination=130+Rue+des+Bouchets,+74140+Yvoire&travelmode=driving"
             />

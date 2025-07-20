@@ -326,7 +326,7 @@ const resources = {
               "Aéroport Genève : <b>35-40 min</b>",
               "Annecy : <b>50-55 min</b> (via A410/D1005)",
               "Lyon : <b>2 h</b> (A40 sortie 13 Bellegarde)",
-              "Village piéton, parkings <b>payants</b> (5 municipaux), <b>parking privé 2 €/jour</b>"
+              "Village piéton, parkings <b>payants</b> (5 municipaux), parking privé <b>gratuit</b>"
             ],
             itineraire: "Calculer mon itinéraire"
           },
@@ -736,7 +736,7 @@ const resources = {
               "Geneva airport: <b>35-40 min</b>",
               "Annecy: <b>50-55 min</b> (via A410/D1005)",
               "Lyon: <b>2 h</b> (A40 exit 13 Bellegarde)",
-              "Pedestrian village, <b>paid parking</b> (5 municipal lots), <b>private parking €2/day</b>"
+              "Pedestrian village, <b>paid parking</b> (5 municipal lots), <b>free</b> private parking"
             ],
             itineraire: "Get my route"
           },
