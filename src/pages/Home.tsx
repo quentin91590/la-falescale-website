@@ -4,7 +4,6 @@ import photoMaison from '../assets/Photo_maison.jpg';
 import sejourImg from '../assets/sejour.jpg';
 import chambreImg from '../assets/chambre.jpg';
 import { motion } from "framer-motion";
-import { useInView } from 'react-intersection-observer';
 import {
   ChevronLeft,
   ChevronRight,

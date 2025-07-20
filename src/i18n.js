@@ -450,6 +450,64 @@ const resources = {
           success: "Message envoyé ! Nous vous répondrons dans les plus brefs délais."
         }
       },
+      reservationPage: {
+  header: {
+    title: "Réservation",
+    subtitle: "Réservez votre séjour à La Falescale et profitez d'un moment magique au bord du lac Léman"
+  },
+  form: {
+    title: "Vérifier les disponibilités",
+    arrival: "Date d'arrivée",
+    departure: "Date de départ",
+    guests: "Nombre de personnes",
+    guest1: "1 personne",
+    guest2: "2 personnes",
+    guest3: "3 personnes",
+    guest4: "4 personnes",
+    checking: "Vérification...",
+    check: "Vérifier la disponibilité",
+    noteTitle: "Note :",
+    note: "La réservation sera confirmée après vérification de la disponibilité. Vous pouvez également réserver directement via nos partenaires.",
+    missingDates: "Veuillez sélectionner les dates d'arrivée et de départ",
+    success: "Dates disponibles ! Vous pouvez procéder à la réservation via nos partenaires."
+  },
+  direct: {
+    title: "Réservation immédiate",
+    text: "Pour une réservation instantanée, utilisez nos plateformes partenaires :",
+    airbnb: "Réserver sur Airbnb",
+    booking: "Réserver sur Booking.com"
+  },
+  capacity: {
+    title: "Capacité du gîte",
+    persons: "4 personnes",
+    max: "Maximum",
+    nights: "2 nuits",
+    min: "Minimum"
+  },
+  tarifsTitle: "Nos tarifs",
+  tarifsSubtitle: "Prix par nuit, pour 4 personnes maximum",
+  tarifs: [
+    { saison: "Haute saison (Juillet-Août)", prix: 150, description: "Week-end et semaine" },
+    { saison: "Moyenne saison (Mai-Juin, Septembre)", prix: 120, description: "Printemps et début automne" },
+    { saison: "Basse saison (Octobre-Avril)", prix: 90, description: "Hiver et début printemps" }
+  ],
+  night: "/ nuit",
+  tax: "* Taxe de séjour non incluse (1€/personne/nuit)",
+  conditionsTitle: "Conditions de séjour",
+  conditions: [
+    { icon: "Clock", title: "Arrivée", detail: "À partir de 16h00" },
+    { icon: "Clock", title: "Départ", detail: "Avant 11h00" },
+    { icon: "CheckCircle", title: "Linge fourni", detail: "Draps et serviettes inclus" },
+    { icon: "AlertCircle", title: "Animaux", detail: "Admis sur demande (supplément)" }
+  ],
+  cancellationTitle: "Politique d'annulation",
+  cancellation: [
+    "Annulation gratuite jusqu'à 7 jours avant l'arrivée",
+    "50% de remboursement entre 7 et 3 jours avant l'arrivée",
+    "Aucun remboursement moins de 3 jours avant l'arrivée",
+    "En cas de circonstances exceptionnelles, nous étudierons chaque demande individuellement"
+  ]
+},
     }
   },
   en: {
@@ -898,6 +956,65 @@ const resources = {
           success: "Message sent! We will reply as soon as possible."
         }
       },
+      reservationPage: {
+  header: {
+    title: "Booking",
+    subtitle: "Book your stay at La Falescale and enjoy a magical moment by Lake Geneva"
+  },
+  form: {
+    title: "Check availability",
+    arrival: "Arrival date",
+    departure: "Departure date",
+    guests: "Number of guests",
+    guest1: "1 guest",
+    guest2: "2 guests",
+    guest3: "3 guests",
+    guest4: "4 guests",
+    checking: "Checking...",
+    check: "Check availability",
+    noteTitle: "Note:",
+    note: "Booking will be confirmed after checking availability. You can also book directly via our partners.",
+    missingDates: "Please select arrival and departure dates",
+    success: "Dates available! You can proceed to book via our partners."
+  },
+  direct: {
+    title: "Instant booking",
+    text: "For instant booking, use our partner platforms:",
+    airbnb: "Book on Airbnb",
+    booking: "Book on Booking.com"
+  },
+  capacity: {
+    title: "Cottage capacity",
+    persons: "4 guests",
+    max: "Maximum",
+    nights: "2 nights",
+    min: "Minimum"
+  },
+  tarifsTitle: "Our rates",
+  tarifsSubtitle: "Price per night, for up to 4 guests",
+  tarifs: [
+    { saison: "High season (July-August)", prix: 150, description: "Weekend and week" },
+    { saison: "Mid season (May-June, September)", prix: 120, description: "Spring and early autumn" },
+    { saison: "Low season (October-April)", prix: 90, description: "Winter and early spring" }
+  ],
+  night: "/ night",
+  tax: "* Tourist tax not included (€1/guest/night)",
+  conditionsTitle: "Stay conditions",
+  conditions: [
+    { icon: "Clock", title: "Check-in", detail: "From 4:00 pm" },
+    { icon: "Clock", title: "Check-out", detail: "Before 11:00 am" },
+    { icon: "CheckCircle", title: "Linen included", detail: "Sheets and towels provided" },
+    { icon: "AlertCircle", title: "Pets", detail: "Allowed on request (extra charge)" }
+  ],
+  cancellationTitle: "Cancellation policy",
+  cancellation: [
+    "Free cancellation up to 7 days before arrival",
+    "50% refund between 7 and 3 days before arrival",
+    "No refund less than 3 days before arrival",
+    "In case of exceptional circumstances, each request will be considered individually"
+  ]
+},
+
     }
   }
 };
