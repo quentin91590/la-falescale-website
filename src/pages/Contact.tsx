@@ -29,7 +29,7 @@ const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElemen
   };
 
   const openWhatsApp = () => {
-    window.open('https://wa.me/33612345678', '_blank');
+    window.open('https://wa.me/33665689483', '_blank');
   };
 
   return (
