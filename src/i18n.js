@@ -5,7 +5,7 @@ const resources = {
   fr: {
     translation: {
       // Navigation / Menu (toujours label à la racine)
-      accueil: 'Accuei',
+      accueil: 'Accueil',
       gite: 'Le Gîte',
       activites: 'Activités',  // 👈 Pour t('activites.label')
       acces: 'Accès',
